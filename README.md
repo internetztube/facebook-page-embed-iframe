@@ -1,4 +1,4 @@
-# Facebook Page Embed iFrame
+# Social Media Page Embed iFrame
 
 The social media widget builder only outputs a JavaScript Snipped which infiltrates your site with the corresponding Javascript. That's bad.
 Because of that I created this repository. 
