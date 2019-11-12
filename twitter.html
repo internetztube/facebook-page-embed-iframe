@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    iframe {
+      width: 100vw !important;
+    }
+    html, body {
+      margin: 0;
+    }
+  </style>
+  <script type="text/javascript">
+    String.prototype.allReplace = function(obj) {
+      var retStr = this;
+      for (var x in obj) {
+        retStr = retStr.replace(new RegExp(x, 'g'), obj[x]);
+      }
+      return retStr;
+    };
+
+    window.onload = function() {
+      var urlParams = new URLSearchParams(window.location.search);
+      var slug = urlParams.get('slug');
+
+      var template = document.querySelector('template');
+      var markup = template.innerHTML;
+      markup = markup.allReplace({'twitter-slug': slug});
+      document.body.innerHTML = markup;
+
+      var script = document.createElement('script');
+      script.src = 'https://platform.twitter.com/widgets.js';
+      document.head.appendChild(script);
+    };
+  </script>
+</head>
+<body>
+<template>
+  <a class="twitter-timeline" href="https://twitter.com/twitter-slug">Tweets by twitter-slug</a>
+</template>
+</body>
+</html>
