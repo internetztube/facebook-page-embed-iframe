@@ -13,6 +13,14 @@
     }
   </style>
   <script type="text/javascript">
+    String.prototype.allReplace = function(obj) {
+      var retStr = this;
+      for (var x in obj) {
+        retStr = retStr.replace(new RegExp(x, 'g'), obj[x]);
+      }
+      return retStr;
+    };
+    
     window.onload = function() {
       var urlParams = new URLSearchParams(window.location.search);
       var slug = urlParams.get('slug');
@@ -21,7 +29,7 @@
       var markup = template.innerHTML;
       markup = markup.replace('${width}', window.innerWidth);
       markup = markup.replace('${height}', window.innerHeight);
-      markup = markup.replace('${fb-slug}', slug);
+      markup = markup.allReplace({'fb-slug': slug});
       document.body.innerHTML = markup;
     };
 
@@ -35,7 +43,7 @@
 
 <template>
   <div id="fb-root"></div>
-  <div class="fb-page" data-href="https://www.facebook.com/${fb-slug}" data-tabs="timeline" data-small-header="false" data-width="${width}" data-height="${height}" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/${fb-slug}" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/${fb-slug}">Facebook Page of ${fb-slug}</a></blockquote></div>
+  <div class="fb-page" data-href="https://www.facebook.com/fb-slug" data-tabs="timeline" data-small-header="false" data-width="${width}" data-height="${height}" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/fb-slug" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/fb-slug">Facebook Page of fb-slug</a></blockquote></div>
 </template>
 </body>
 </html>
