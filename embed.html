@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="robots" content="noindex">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <style>
+    iframe, .fb-page {
+      width: 100vw !important;
+      height: 100vh !important;
+    }
+    html, body {
+      margin: 0;
+    }
+  </style>
+  <script type="text/javascript">
+    window.onload = function() {
+      var urlParams = new URLSearchParams(window.location.search);
+      var slug = urlParams.get('slug');
+
+      var template = document.querySelector('template');
+      var markup = template.innerHTML;
+      markup = markup.replace('${width}', window.innerWidth);
+      markup = markup.replace('${height}', window.innerHeight);
+      markup = markup.replace('${fb-slug}', slug);
+      document.body.innerHTML = markup;
+    };
+
+    window.onresize = function() {
+      window.location.reload();
+    };
+  </script>
+  <script type="text/javascript" src="https://connect.facebook.net/de_DE/sdk.js#xfbml=1&version=v3.2"></script>
+</head>
+<body>
+
+<template>
+  <div id="fb-root"></div>
+  <div class="fb-page" data-href="https://www.facebook.com/${fb-slug}" data-tabs="timeline" data-small-header="false" data-width="${width}" data-height="${height}" data-adapt-container-width="true" data-hide-cover="false" data-show-facepile="true"><blockquote cite="https://www.facebook.com/${fb-slug}" class="fb-xfbml-parse-ignore"><a href="https://www.facebook.com/${fb-slug}">Facebook Page of ${fb-slug}</a></blockquote></div>
+</template>
+</body>
+</html>
