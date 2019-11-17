@@ -42,12 +42,10 @@
         sizing = JSON.parse(JSON.stringify(sizing));
         var tweetId = $element.dataset.tweetId;
 
-        var myEvent = new CustomEvent(`twitter-embed-tweet-${tweetId}`, {
+        window.parent.postMessage({
           sizing: sizing,
           tweetId: tweetId,
-        });
-
-        window.parent.dispatchEvent(myEvent)
+        })
       }, 0);
     };
   </script>
